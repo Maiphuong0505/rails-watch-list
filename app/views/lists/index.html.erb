@@ -1,0 +1,23 @@
+<nav class="py-4 px-4 mb-3 d-flex justify-content-start align-items-center navbar" style="background-color:rgb(152, 36, 36);" data-bs-theme="light">
+  <ul class="nav">
+    <li class="nav-item" style= "color:rgb(228, 228, 228); font-size: 20px">
+      Movie lists
+    </li>
+  </ul>
+</nav>
+<div class="container my-3">
+  <h1>This is all the lists you have 👇</h1>
+  <ul class="list-group mt-3 mb-4">
+    <% @lists.each do |list| %>
+    <li class="list-group-item"><%= link_to "#{list.name}", list_path(list), { style: "text-decoration:none; color:black;" } %></li>
+    <% end %>
+  </ul>
+  <hr>
+  <div class="create-list-form">
+    <h5 style="color:rgb(152, 36, 36)">Create a new list</h5>
+    <%= simple_form_for @list do |f| %>
+      <%= f.input :name, label: 'Please name your list'%>
+      <%= f.button :submit %>
+    <% end %>
+  </div>
+</div>

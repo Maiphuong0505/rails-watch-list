@@ -1,0 +1,36 @@
+<nav class="py-4 px-4 mb-3 d-flex justify-content-start align-items-center navbar" style="background-color:rgb(152, 36, 36);" data-bs-theme="light">
+  <ul class="nav">
+    <li class="nav-item">
+      <%= link_to "Movie lists", lists_path, { class: "nav-link", style: "color:rgb(228, 228, 228); font-size: 20px" } %>
+    </li>
+  </ul>
+</nav>
+
+<div class="container my-3">
+  <h1><%= @list.name %></h1>
+  <hr>
+  <% if @bookmarks.empty? %>
+    <p class="mb-0">No bookmark yet! Try adding one! 😉</p>
+  <% else %>
+    <ul class="list-group">
+      <% @bookmarks.each do |bookmark| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="bookmark-info">
+            <h5><%= bookmark.movie.title %></h5>
+            <p class="mb-0"><%= bookmark.comment %></p>
+          </div>
+          <%= link_to "Delete", bookmark_path(bookmark), { class: "btn btn-danger", style: "color:white;", data: { turbo_method: :delete, turbo_confirm: "Are you sure, bro??" } }%>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <hr>
+
+  <div class="new-bookmark-form">
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.association :movie, label: 'Choose your movie', prompt: 'Eg. Phineas and Ferb' %>
+    <%= f.input :comment, label: 'Write your comment here' %>
+    <%= f.button :submit %>
+  <% end %>
+  </div>
+</div>
