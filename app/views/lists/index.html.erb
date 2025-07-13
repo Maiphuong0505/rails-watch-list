@@ -1,10 +1,11 @@
 <nav class="py-4 px-4 mb-3 d-flex justify-content-start align-items-center navbar" style="background-color:rgb(152, 36, 36);" data-bs-theme="light">
   <ul class="nav">
-    <li class="nav-item" style= "color:rgb(228, 228, 228); font-size: 20px">
-      Movie lists
+    <li class="nav-item">
+      <%= link_to "Movie lists", lists_path, { class: "nav-link", style: "color:rgb(228, 228, 228); font-size: 20px" } %>
     </li>
   </ul>
 </nav>
+
 <div class="container my-3">
   <h1>This is all the lists you have 👇</h1>
   <ul class="list-group mt-3 mb-4">

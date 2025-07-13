@@ -27,6 +27,7 @@
   <hr>
 
   <div class="new-bookmark-form">
+  <h5 style="color:rgb(152, 36, 36)">Create a new bookmark</h5>
   <%= simple_form_for [@list, @bookmark] do |f| %>
     <%= f.association :movie, label: 'Choose your movie', prompt: 'Eg. Phineas and Ferb' %>
     <%= f.input :comment, label: 'Write your comment here' %>
