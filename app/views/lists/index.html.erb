@@ -6,26 +6,30 @@
   </ul>
 </nav>
 
-<div class="container my-3">
-  <h1>This is all the lists you have 👇</h1>
-  <ul class="list-group mt-3 mb-4">
-    <% @lists.each do |list| %>
-    <li class="list-group-item"><%= link_to "#{list.name}", list_path(list), { style: "text-decoration:none; color:black;" } %>
-      <% if list.photo.attached? %>
-        <%= cl_image_tag list.photo.key, width: 180, height: 320, crop: :fill %>
-      <% else %>
-        <%= image_tag 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPQDYau3Hs4-xw1i8jVSUY4BlF4FLmg8lQqg&usqp=CAU' %>
+<div class="main-container mx-5 my-3">
+  <div class="row gx-3">
+    <div class="cards col-8">
+      <% @lists.each do |list| %>
+        <div class="list-card">
+          <% if list.photo.attached? %>
+            <%= cl_image_tag list.photo.key, crop: :fill %>
+          <% else %>
+            <%= image_tag 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPQDYau3Hs4-xw1i8jVSUY4BlF4FLmg8lQqg&usqp=CAU' %>
+          <% end %>
+          <div class="list-infos d-flex flex-column justify-content-center align-items-start">
+            <%= link_to "#{list.name}", list_path(list), { style: "text-decoration:none; color:black;" } %>
+          </div>
+        </div>
       <% end %>
-    </li>
-    <% end %>
-  </ul>
-  <hr>
-  <div class="create-list-form">
-    <h5 style="color:rgb(152, 36, 36)">Create a new list</h5>
-    <%= simple_form_for @list do |f| %>
-      <%= f.input :name, label: 'Please name your list'%>
-      <%= f.input :photo, as: :file, label: 'Add a cover photo' %>
-      <%= f.button :submit %>
-    <% end %>
+    </div>
+    <div class="create-list-form list-card py-2 px-2 my-3 col-4">
+      <h5 style="color:rgb(152, 36, 36)">Create a new list</h5>
+      <%= simple_form_for @list do |f| %>
+        <%= f.input :name, label: 'Please name your list'%>
+        <%= f.input :photo, as: :file, label: 'Add a cover photo' %>
+        <%= f.button :submit %>
+      <% end %>
+    </div>
   </div>
+
 </div>
